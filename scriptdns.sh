@@ -3,8 +3,6 @@
 
 apt update && apt install -y bind9 bind9utils bind9-doc
 
-BIND_CONFIG="/etc/bind/named.conf.local"
-
 #Zona programaciocor.com
 cat <<EOT > /etc/bind/db.programaciocor.com
 \$TTL 1M
@@ -64,7 +62,7 @@ cat <<EOT > /etc/bind/db.10.18.144
 6   IN  PTR est05.programaciocor.com.
 EOT
 
-cat <<EOT >> $BIND_CONFIG
+cat <<EOT >> "/etc/bind/named.conf.local"
 
 zone "programaciocor.com" {
     type master;
@@ -83,4 +81,4 @@ zone "144.18.10.in-addr.arpa" {
 EOT
 
 systemctl restart bind9
-systemctl enable bind9
+systemctl status bind9
