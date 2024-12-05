@@ -1,7 +1,7 @@
 #!/bin/bash
 #Script de configuración DNS Grup1
 
-apt update && apt install -y bind9 bind9utils bind9-doc
+apt install -y bind9
 
 #Zona programaciocor.com
 cat <<EOT > /etc/bind/db.programaciocor.com
@@ -24,6 +24,7 @@ mail01 IN A 192.168.144.26
 mail02 IN A 192.168.144.27
 web IN A 192.168.144.28
 file IN A 192.168.144.29
+@    IN A 192.168.144.24
 EOT
 
 #Subzona estacions.programaciocor.com
@@ -37,6 +38,7 @@ cat <<EOT > /etc/bind/db.estacions.programaciocor.com
     60 )
 @   IN  NS  ns01.programaciocor.com.
 @   IN  NS  ns02.programaciocor.com.
+@   IN  NS 192.168.144.24
 est01 IN  A 10.18.144.2
 est02 IN  A 10.18.144.3
 est03 IN  A 10.18.144.4
